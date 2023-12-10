@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Используется html 5 версии -->
+<html lang="ru">
+  <!-- Язык сайта - русский -->
+  {% include "includes/head.html"%}
+  <body>
+    {%include "includes/header.html"%}
+    <main>
+      <div class="container py-5">
+        <h1>Лев Толстой</h1>
+        <article>
+          {%for post in posts%}
+          <ul>
+            <li>{{post.author.get_full_name}}</li>
+            <li>Дата публикации: {{post.pub_date|date:"d E Y"}}</li>
+          </ul>
+          <p>{{post.text}}</p>
+          <a href="{% url 'posts:group_list' slug=post.group.slug %}">
+            все записи группы {{ post.group }}
+          </a>
+          {% if not forloop.last %}
+          <hr />
+          {% endif %} {% endfor %}
+        </article>
+      </div>
+    </main>
+    {% include "includes/footer.html" %}
+  </body>
+</html>

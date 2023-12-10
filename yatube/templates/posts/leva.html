@@ -1,0 +1,5 @@
+{% extends "base.html" %} {% block content %}
+<title>{{title}}</title>
+<h1>{{text}}</h1>
+<a href={% url 'posts:index' %}>главная про леву</a>
+{%endblock%}

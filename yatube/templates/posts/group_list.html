@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <!-- Язык сайта - русский -->
+  {% include "includes/head.html"%}
+  <body>
+    {%include "includes/header.html"%}
+    <main>
+      <!-- класс py-5 создает отступы сверху и снизу блока -->
+      <div class="container py-5">
+        <h1>Лев Толстой – зеркало русской революции.</h1>
+        <p>Группа тайных поклонников графа.</p>
+        {%for post in posts%}
+        <article>
+          <ul>
+            <li>Автор: {{post.author.get_full_name}}</li>
+            <li>Дата публикации: {{post.pub_date|date:"d E Y"}}</li>
+          </ul>
+          <p>{{post.text}}</p>
+          <a href="{% url 'posts:index'%}">все записи группы</a>
+        </article>
+        {% if not forloop.last %}
+        <hr />
+        {% endif %} {% endfor %}
+      </div>
+    </main>
+    {%include "includes/footer.html"%}
+  </body>
+</html>
